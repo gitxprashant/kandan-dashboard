@@ -5,7 +5,9 @@ import { FaAngleDown } from 'react-icons/fa6';
 import axios from 'axios';
 
 function Dashboard() {
-  const [isDarkMode, setDarkMode] = useState(false);
+  const [isDarkMode, setDarkMode] = useState(
+    JSON.parse(localStorage.getItem('isDarkMode')) || false
+  );
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(
     localStorage.getItem('selectedFilter') || 'user'
@@ -16,7 +18,9 @@ function Dashboard() {
   );
 
   const toggleDarkMode = () => {
-    setDarkMode(!isDarkMode);
+    const newMode = !isDarkMode;
+    setDarkMode(newMode);
+    localStorage.setItem('isDarkMode', JSON.stringify(newMode));
   };
 
   const toggleDropdown = () => {
@@ -167,10 +171,10 @@ function Dashboard() {
         <div className='user-row'>
           {Object.keys(filterData()).map((groupKey) => (
             <div key={groupKey} className='column'>
-              {renderGroupHeader(groupKey)}
+              <div className='card-header'>{renderGroupHeader(groupKey)}</div>
               {filterData()[groupKey].map((ticket) => (
                 <div key={ticket.id} className='ticket-card'>
-                  <h4>{ticket.title}</h4>
+                  <h>{ticket.title}</h>
                   <p>Status: {ticket.status}</p>
                   <p>Priority: {ticket.priority}</p>
                 </div>
