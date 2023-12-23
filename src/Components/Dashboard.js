@@ -174,9 +174,9 @@ function Dashboard() {
               <div className='card-header'>{renderGroupHeader(groupKey)}</div>
               {filterData()[groupKey].map((ticket) => (
                 <div key={ticket.id} className='ticket-card'>
-                  <h>{ticket.title}</h>
-                  <p>Status: {ticket.status}</p>
-                  <p>Priority: {ticket.priority}</p>
+                  <div className='card-id'>{ticket.id}</div>
+                  <div className='card-title'>{ticket.title}</div>
+                  <span className='feature'>Feature Request</span>
                 </div>
               ))}
             </div>
