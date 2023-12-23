@@ -184,6 +184,14 @@
   color: #b8b8b8;
 }
 
+.light .card-id{
+  color: #010409;
+}
+
+.light .card-title{
+  color: #010409;
+}
+
 .card-title{
   color: #ffff;
 }
